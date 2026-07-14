@@ -1,14 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import BrandLogo from "@/components/BrandLogo";
 import { BrandWordmark } from "@/components/HeaderWordmark";
 
 const navLinks = [
-  { label: "Arhitektura", href: "#arhitektura", sectionId: "arhitektura" },
-  { label: "Nekretnine", href: "#poslovanje-nekretninama", sectionId: "poslovanje-nekretninama" },
-  { label: "Kontakt", href: "#kontakt", sectionId: "kontakt" },
+  { label: "Arhitektura", href: "/#arhitektura", sectionId: "arhitektura" },
+  { label: "Nekretnine", href: "/#poslovanje-nekretninama", sectionId: "poslovanje-nekretninama" },
+  { label: "Kontakt", href: "/#kontakt", sectionId: "kontakt" },
 ];
 
 const trackedSections = navLinks.map((link) => link.sectionId);
@@ -45,11 +47,14 @@ function NavItem({
 }
 
 export default function Header() {
+  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
 
-  const onHero = !scrolled && !menuOpen;
+  const isHome = pathname === "/";
+  const onHero = isHome && !scrolled && !menuOpen;
+  const showSolidHeader = !isHome || scrolled || menuOpen;
 
   useEffect(() => {
     function onScroll() {
@@ -62,6 +67,8 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
+    if (!isHome) return;
+
     const elements = trackedSections
       .map((id) => document.getElementById(id))
       .filter((element): element is HTMLElement => element !== null);
@@ -83,7 +90,7 @@ export default function Header() {
 
     elements.forEach((element) => observer.observe(element));
     return () => observer.disconnect();
-  }, []);
+  }, [isHome]);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
@@ -104,14 +111,14 @@ export default function Header() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut", delay: 0.05 }}
       className={`sticky top-0 z-50 h-[var(--header-height)] transition-all duration-300 ease-out ${
-        scrolled
+        showSolidHeader
           ? "border-b border-border-light/50 bg-[rgba(255,255,255,0.92)] shadow-[0_4px_24px_rgba(0,0,0,0.05)] backdrop-blur-[16px]"
           : "border-b border-transparent bg-transparent"
       }`}
     >
       <div className="mx-auto flex h-full max-w-[1200px] items-center justify-between pl-8 pr-6 md:pl-12 md:pr-10">
-        <a
-          href="#top"
+        <Link
+          href="/"
           aria-label="Hashtag Blue — početna"
           className="relative z-50 flex shrink-0 items-center gap-[18px]"
         >
@@ -124,7 +131,7 @@ export default function Header() {
             <BrandLogo variant="card" priority className="h-[52px] w-auto" />
           </motion.span>
           <BrandWordmark onHero={onHero} />
-        </a>
+        </Link>
 
         <nav aria-label="Glavna navigacija" className="hidden md:block">
           <ul className="flex items-center gap-10 lg:gap-12">

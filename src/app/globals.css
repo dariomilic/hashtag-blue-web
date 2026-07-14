@@ -330,3 +330,11 @@ body {
   border-color: rgba(32, 91, 140, 0.22);
   box-shadow: 0 8px 24px rgba(28, 28, 28, 0.04);
 }
+
+.legal-prose > :first-child {
+  margin-top: 0;
+}
+
+.legal-prose > :last-child {
+  margin-bottom: 0;
+}

@@ -4,11 +4,9 @@ import CounterStat from "@/components/CounterStat";
 import FadeIn from "@/components/FadeIn";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import BrandLogo from "@/components/BrandLogo";
+import SiteFooter from "@/components/SiteFooter";
 import SectionNumber from "@/components/SectionNumber";
 import { brandPhotos } from "@/lib/photos";
-
-const footerDisciplines = ["Arhitektura", "Urbanizam", "Nekretnine"] as const;
 
 export const siteStats = [
   { value: "10+", label: "godina iskustva" },
@@ -411,33 +409,7 @@ export default function Home() {
 
       {/* Footer */}
       <FadeIn>
-        <footer className="bg-[#1C1C1C] px-6 py-20 md:px-10 md:py-24">
-          <div className="mx-auto grid max-w-[1200px] gap-12 md:grid-cols-3 md:items-start md:gap-10">
-            <div>
-              <BrandLogo variant="white" className="h-[52px] w-auto" />
-              <ul className="mt-8 space-y-2">
-                {footerDisciplines.map((item) => (
-                  <li
-                    key={item}
-                    className="text-[11px] font-medium tracking-[0.14em] text-white/55 uppercase"
-                  >
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <p className="text-[15px] leading-relaxed text-white/60 md:pt-2 md:text-center">
-              Projektiranje prostora za budućnost.
-            </p>
-
-            <p className="text-[12px] leading-relaxed tracking-wide text-white/45 md:pt-2 md:text-right">
-              Copyright © 2026 Hashtag Blue d.o.o.
-              <br />
-              All Rights Reserved.
-            </p>
-          </div>
-        </footer>
+        <SiteFooter />
       </FadeIn>
     </div>
   );
