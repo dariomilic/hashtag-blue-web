@@ -55,7 +55,7 @@ export default function Header() {
 
   const isHome = pathname === "/";
   const onHero = isHome && !scrolled && !menuOpen;
-  const showSolidHeader = !isHome || scrolled || menuOpen;
+  const showSolidHeader = !isHome || scrolled;
 
   useEffect(() => {
     function onScroll() {
@@ -94,9 +94,30 @@ export default function Header() {
   }, [isHome]);
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "";
-    return () => {
+    if (!menuOpen) {
       document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+      document.documentElement.style.overflow = "";
+      return;
+    }
+
+    const scrollY = window.scrollY;
+
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = "100%";
+
+    return () => {
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+      window.scrollTo(0, scrollY);
     };
   }, [menuOpen]);
 
@@ -107,67 +128,66 @@ export default function Header() {
   const barClass = onHero ? "bg-[#F7F6F4]" : "bg-charcoal";
 
   return (
-    <motion.header
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut", delay: 0.05 }}
-      className={`sticky top-0 z-50 h-[var(--header-height)] transition-all duration-300 ease-out ${
-        showSolidHeader
-          ? "border-b border-border-light/50 bg-[rgba(255,255,255,0.92)] shadow-[0_4px_24px_rgba(0,0,0,0.05)] backdrop-blur-[16px]"
-          : "border-b border-transparent bg-transparent"
-      }`}
-    >
-      <div className="mx-auto flex h-full max-w-[1200px] items-center justify-between pl-8 pr-6 md:pl-12 md:pr-10">
-        <Link
-          href="/"
-          aria-label="Hashtag Blue — početna"
-          className="relative z-50 flex shrink-0 items-center gap-[18px]"
-        >
-          <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-            className="flex shrink-0 items-center"
+    <>
+      <motion.header
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut", delay: 0.05 }}
+        className={`sticky top-0 z-50 h-[var(--header-height)] transition-all duration-300 ease-out ${
+          showSolidHeader
+            ? "border-b border-border-light/50 bg-[rgba(255,255,255,0.92)] shadow-[0_4px_24px_rgba(0,0,0,0.05)] backdrop-blur-[16px]"
+            : "border-b border-transparent bg-transparent"
+        }`}
+      >
+        <div className="mx-auto flex h-full max-w-[1200px] items-center justify-between pl-8 pr-6 md:pl-12 md:pr-10">
+          <Link
+            href="/"
+            aria-label="Hashtag Blue — početna"
+            className="relative z-50 flex shrink-0 items-center gap-[18px]"
           >
-            <BrandLogo variant="card" priority className="h-[52px] w-auto" />
-          </motion.span>
-          <BrandWordmark onHero={onHero} />
-        </Link>
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+              className="flex shrink-0 items-center"
+            >
+              <BrandLogo variant="card" priority className="h-[52px] w-auto" />
+            </motion.span>
+            <BrandWordmark onHero={onHero} />
+          </Link>
 
-        <nav aria-label="Glavna navigacija" className="hidden md:block">
-          <ul className="flex items-center gap-10 lg:gap-12">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <NavItem
-                  href={link.href}
-                  label={link.label}
-                  active={activeSection === link.sectionId}
-                  onHero={onHero}
-                />
-              </li>
-            ))}
-          </ul>
-        </nav>
+          <nav aria-label="Glavna navigacija" className="hidden md:block">
+            <ul className="flex items-center gap-10 lg:gap-12">
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <NavItem
+                    href={link.href}
+                    label={link.label}
+                    active={activeSection === link.sectionId}
+                    onHero={onHero}
+                  />
+                </li>
+              ))}
+            </ul>
+          </nav>
 
-        <button
-          type="button"
-          className="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden"
-          aria-expanded={menuOpen}
-          aria-controls="mobile-nav"
-          aria-label="Otvori izbornik"
-          onClick={() => setMenuOpen(true)}
-        >
-          <span className={`block h-px w-6 ${barClass}`} />
-          <span className={`block h-px w-6 ${barClass}`} />
-        </button>
-      </div>
+          <button
+            type="button"
+            className="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-[5px] md:hidden"
+            aria-expanded={menuOpen}
+            aria-controls="mobile-nav"
+            aria-label="Otvori izbornik"
+            onClick={() => setMenuOpen(true)}
+          >
+            <span className={`block h-px w-6 ${barClass}`} />
+            <span className={`block h-px w-6 ${barClass}`} />
+            <span className={`block h-px w-6 ${barClass}`} />
+          </button>
+        </div>
+      </motion.header>
 
-      <MobileMenu
-        open={menuOpen}
-        onClose={closeMenu}
-        activeSection={activeSection}
-      />
-    </motion.header>
+      <MobileMenu open={menuOpen} onClose={closeMenu} activeSection={activeSection} />
+    </>
   );
 }
 

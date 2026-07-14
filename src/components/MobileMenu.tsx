@@ -2,7 +2,9 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useSyncExternalStore } from "react";
+import { createPortal } from "react-dom";
 import BrandLogo from "@/components/BrandLogo";
 import { BrandWordmark } from "@/components/HeaderWordmark";
 
@@ -12,13 +14,13 @@ const navLinks = [
   { label: "Kontakt", href: "/#kontakt", sectionId: "kontakt" },
 ] as const;
 
-const menuDisciplines = ["Arhitektura", "Urbanizam", "Nekretnine"] as const;
-
 type MobileMenuProps = {
   open: boolean;
   onClose: () => void;
   activeSection: string | null;
 };
+
+const MENU_TRANSITION = { duration: 0.28, ease: "easeOut" as const };
 
 function MobileNavLink({
   href,
@@ -32,32 +34,33 @@ function MobileNavLink({
   onClose: () => void;
 }) {
   const pathname = usePathname();
+  const router = useRouter();
 
   function handleClick(event: React.MouseEvent<HTMLAnchorElement>) {
+    event.preventDefault();
     onClose();
 
-    if (!href.startsWith("/#")) return;
+    const sectionId = href.startsWith("/#") ? href.slice(2) : null;
 
-    const sectionId = href.slice(2);
+    window.setTimeout(() => {
+      if (pathname === "/" && sectionId) {
+        document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+        return;
+      }
 
-    if (pathname !== "/") return;
-
-    event.preventDefault();
-
-    window.requestAnimationFrame(() => {
-      document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
-    });
+      router.push(href);
+    }, MENU_TRANSITION.duration * 1000);
   }
 
   return (
     <Link
       href={href}
       onClick={handleClick}
-      className="group relative block pl-5 text-[38px] font-medium leading-[1.2] text-[#1C1C1C] transition-colors duration-200 hover:text-accent active:text-accent"
+      className="relative block pl-6 font-heading text-[38px] font-medium leading-[1.2] text-[#1C1C1C] transition-colors duration-200 active:text-[#205B8C]"
     >
       {active && (
         <span
-          className="absolute top-1/2 left-0 h-7 w-px -translate-y-1/2 bg-accent"
+          className="absolute top-1/2 left-0 h-9 w-[2px] -translate-y-1/2 bg-[#205B8C]"
           aria-hidden="true"
         />
       )}
@@ -67,7 +70,15 @@ function MobileNavLink({
 }
 
 export default function MobileMenu({ open, onClose, activeSection }: MobileMenuProps) {
-  return (
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
+
+  if (!mounted) return null;
+
+  return createPortal(
     <AnimatePresence>
       {open && (
         <motion.div
@@ -75,11 +86,12 @@ export default function MobileMenu({ open, onClose, activeSection }: MobileMenuP
           role="dialog"
           aria-modal="true"
           aria-label="Glavni izbornik"
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: -16 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.28, ease: "easeOut" }}
-          className="fixed inset-0 z-[100] flex flex-col bg-white md:hidden"
+          exit={{ opacity: 0, y: -16 }}
+          transition={MENU_TRANSITION}
+          className="fixed inset-0 z-[200] flex min-h-dvh flex-col bg-[#FFFFFF] md:hidden"
+          style={{ touchAction: "none" }}
         >
           <div className="flex h-[var(--header-height)] shrink-0 items-center justify-between px-8">
             <Link
@@ -96,7 +108,7 @@ export default function MobileMenu({ open, onClose, activeSection }: MobileMenuP
               type="button"
               onClick={onClose}
               aria-label="Zatvori izbornik"
-              className="flex h-10 w-10 items-center justify-center text-[#1C1C1C] transition-colors duration-200 hover:text-accent"
+              className="flex h-10 w-10 items-center justify-center text-[#1C1C1C]"
             >
               <span className="relative block h-5 w-5" aria-hidden="true">
                 <span className="absolute top-1/2 left-0 h-px w-5 -translate-y-1/2 rotate-45 bg-current" />
@@ -105,8 +117,8 @@ export default function MobileMenu({ open, onClose, activeSection }: MobileMenuP
             </button>
           </div>
 
-          <nav aria-label="Mobilna navigacija" className="flex-1 px-8 pt-10">
-            <ul className="flex flex-col gap-[44px]">
+          <nav aria-label="Mobilna navigacija" className="flex-1 px-8 pt-8">
+            <ul className="flex flex-col gap-[48px]">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <MobileNavLink
@@ -120,18 +132,17 @@ export default function MobileMenu({ open, onClose, activeSection }: MobileMenuP
             </ul>
           </nav>
 
-          <footer className="shrink-0 px-8 pb-10 pt-6">
-            <p className="text-[13px] tracking-[0.12em] text-[#888888] uppercase">Hashtag Blue</p>
-            <ul className="mt-3 space-y-1">
-              {menuDisciplines.map((item) => (
-                <li key={item} className="text-[13px] text-[#888888]">
-                  {item}
-                </li>
-              ))}
-            </ul>
+          <footer className="shrink-0 border-t border-[#E9ECEF] px-8 pt-6 pb-10">
+            <p className="brand-wordmark text-[13px] font-medium tracking-[0.14em] text-[#205B8C] uppercase">
+              Hashtag Blue
+            </p>
+            <p className="mt-2 text-[13px] leading-relaxed text-[#888888]">
+              Arhitektura | Urbanizam | Nekretnine
+            </p>
           </footer>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body,
   );
 }
