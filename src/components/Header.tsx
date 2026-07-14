@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import BrandLogo from "@/components/BrandLogo";
+import MobileMenu from "@/components/MobileMenu";
 import { BrandWordmark } from "@/components/HeaderWordmark";
 
 const navLinks = [
@@ -153,51 +154,19 @@ export default function Header() {
           className="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden"
           aria-expanded={menuOpen}
           aria-controls="mobile-nav"
-          aria-label={menuOpen ? "Zatvori izbornik" : "Otvori izbornik"}
-          onClick={() => setMenuOpen((open) => !open)}
+          aria-label="Otvori izbornik"
+          onClick={() => setMenuOpen(true)}
         >
-          <span
-            className={`block h-px w-6 transition-all duration-300 ${barClass} ${
-              menuOpen ? "translate-y-[3.5px] rotate-45" : ""
-            }`}
-          />
-          <span
-            className={`block h-px w-6 transition-all duration-300 ${barClass} ${
-              menuOpen ? "-translate-y-[3.5px] -rotate-45" : ""
-            }`}
-          />
+          <span className={`block h-px w-6 ${barClass}`} />
+          <span className={`block h-px w-6 ${barClass}`} />
         </button>
       </div>
 
-      <div
-        id="mobile-nav"
-        className={`fixed inset-0 z-40 flex flex-col bg-background transition-all duration-500 md:hidden ${
-          menuOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
-        }`}
-        aria-hidden={!menuOpen}
-      >
-        <div className="flex flex-1 flex-col items-center justify-center px-6">
-          <div className="mb-12 flex items-center gap-[18px]">
-            <BrandLogo variant="card" className="h-[52px] w-auto" />
-            <BrandWordmark />
-          </div>
-          <nav aria-label="Mobilna navigacija">
-            <ul className="flex flex-col items-center gap-8">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    onClick={closeMenu}
-                    className="font-heading text-3xl text-charcoal transition-colors duration-300 hover:text-accent"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </div>
-      </div>
+      <MobileMenu
+        open={menuOpen}
+        onClose={closeMenu}
+        activeSection={activeSection}
+      />
     </motion.header>
   );
 }
