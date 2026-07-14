@@ -100,7 +100,7 @@ export default function MobileMenu({ open, onClose, activeSection }: MobileMenuP
               aria-label="Hashtag Blue — početna"
               className="flex items-center gap-[18px]"
             >
-              <BrandLogo variant="card" className="h-[52px] w-auto" />
+              <BrandLogo variant="black" className="h-[52px] w-auto" />
               <BrandWordmark />
             </Link>
 

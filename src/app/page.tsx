@@ -1,4 +1,5 @@
 import Image from "next/image";
+import type { Metadata } from "next";
 import { Clock, Mail, Phone } from "lucide-react";
 import CounterStat from "@/components/CounterStat";
 import FadeIn from "@/components/FadeIn";
@@ -6,7 +7,10 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import SiteFooter from "@/components/SiteFooter";
 import SectionNumber from "@/components/SectionNumber";
+import { homepageMetadata } from "@/lib/seo";
 import { brandPhotos } from "@/lib/photos";
+
+export const metadata: Metadata = homepageMetadata;
 
 export const siteStats = [
   { value: "10+", label: "godina iskustva" },

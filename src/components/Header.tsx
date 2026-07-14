@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import BrandLogo from "@/components/BrandLogo";
 import MobileMenu from "@/components/MobileMenu";
 import { BrandWordmark } from "@/components/HeaderWordmark";
@@ -16,31 +16,30 @@ const navLinks = [
 
 const trackedSections = navLinks.map((link) => link.sectionId);
 
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+  if (window.location.hash) {
+    window.history.replaceState(null, "", "/");
+  }
+}
+
 function NavItem({
   href,
   label,
   active,
-  onHero,
 }: {
   href: string;
   label: string;
   active: boolean;
-  onHero: boolean;
 }) {
-  const textClass = onHero
-    ? "text-[#F7F6F4]/92 hover:text-accent"
-    : "text-charcoal hover:text-accent";
-
-  const underlineClass = "bg-accent";
-
   return (
     <a
       href={href}
-      className={`nav-link relative pb-1.5 text-[11px] font-medium tracking-[0.12em] uppercase transition-colors duration-300 ${textClass}`}
+      className="nav-link relative pb-1.5 text-[11px] font-medium tracking-[0.12em] uppercase hover:text-accent"
     >
       {label}
       <span
-        className={`nav-link-underline ${underlineClass} ${active ? "nav-link-underline--active" : ""}`}
+        className={`nav-link-underline bg-accent ${active ? "nav-link-underline--active" : ""}`}
         aria-hidden="true"
       />
     </a>
@@ -52,6 +51,7 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
+  const pendingScrollToTop = useRef(false);
 
   const isHome = pathname === "/";
   const onHero = isHome && !scrolled && !menuOpen;
@@ -121,29 +121,52 @@ export default function Header() {
     };
   }, [menuOpen]);
 
+  useEffect(() => {
+    if (!menuOpen && pendingScrollToTop.current) {
+      pendingScrollToTop.current = false;
+      scrollToTop();
+    }
+  }, [menuOpen]);
+
   function closeMenu() {
     setMenuOpen(false);
   }
 
-  const barClass = onHero ? "bg-[#F7F6F4]" : "bg-charcoal";
+  function handleLogoClick(e: React.MouseEvent<HTMLAnchorElement>) {
+    if (isHome) {
+      e.preventDefault();
+      if (menuOpen) {
+        pendingScrollToTop.current = true;
+        closeMenu();
+        return;
+      }
+      scrollToTop();
+      return;
+    }
+
+    if (menuOpen) {
+      closeMenu();
+    }
+  }
+
+  const barClass = onHero ? "bg-white" : "bg-[#111111]";
+  const instantHeader = showSolidHeader && !isHome;
 
   return (
     <>
-      <motion.header
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 0.05 }}
-        className={`sticky top-0 z-50 h-[var(--header-height)] transition-all duration-300 ease-out ${
-          showSolidHeader
-            ? "border-b border-border-light/50 bg-[rgba(255,255,255,0.92)] shadow-[0_4px_24px_rgba(0,0,0,0.05)] backdrop-blur-[16px]"
-            : "border-b border-transparent bg-transparent"
-        }`}
+      <header
+        className={`site-header sticky top-0 z-50 h-[var(--header-height)]${
+          showSolidHeader ? " site-header--scrolled" : ""
+        }${instantHeader ? " site-header--instant" : ""}`}
+        data-scrolled={showSolidHeader ? "true" : "false"}
       >
         <div className="mx-auto flex h-full max-w-[1200px] items-center justify-between pl-8 pr-6 md:pl-12 md:pr-10">
           <Link
             href="/"
-            aria-label="Hashtag Blue — početna"
-            className="relative z-50 flex shrink-0 items-center gap-[18px]"
+            scroll={isHome ? false : true}
+            onClick={handleLogoClick}
+            aria-label="Povratak na početak"
+            className="header-brand-link relative z-50 flex shrink-0 cursor-pointer items-center gap-[18px]"
           >
             <motion.span
               initial={{ opacity: 0 }}
@@ -151,12 +174,16 @@ export default function Header() {
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
               className="flex shrink-0 items-center"
             >
-              <BrandLogo variant="card" priority className="h-[52px] w-auto" />
+              <BrandLogo
+                variant="color"
+                priority
+                className="h-[52px] w-auto"
+              />
             </motion.span>
-            <BrandWordmark onHero={onHero} />
+            <BrandWordmark />
           </Link>
 
-          <nav aria-label="Glavna navigacija" className="hidden md:block">
+          <nav aria-label="Glavna navigacija" className="site-header__nav hidden md:block">
             <ul className="flex items-center gap-10 lg:gap-12">
               {navLinks.map((link) => (
                 <li key={link.href}>
@@ -164,7 +191,6 @@ export default function Header() {
                     href={link.href}
                     label={link.label}
                     active={activeSection === link.sectionId}
-                    onHero={onHero}
                   />
                 </li>
               ))}
@@ -184,7 +210,7 @@ export default function Header() {
             <span className={`block h-px w-6 ${barClass}`} />
           </button>
         </div>
-      </motion.header>
+      </header>
 
       <MobileMenu open={menuOpen} onClose={closeMenu} activeSection={activeSection} />
     </>

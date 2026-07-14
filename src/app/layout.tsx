@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import { logos } from "@/lib/brand";
+import { rootMetadata } from "@/lib/seo";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -15,9 +16,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Arhitektonski ured Zagreb | Projektiranje kuća | HASHTAG BLUE",
-  description:
-    "Arhitektonski ured iz Zagreba specijaliziran za projektiranje privatnih kuća i zgrada te poslovanje nekretninama. Obratite nam se za profesionalno rješenje.",
+  ...rootMetadata,
   icons: {
     icon: logos.color,
   },
