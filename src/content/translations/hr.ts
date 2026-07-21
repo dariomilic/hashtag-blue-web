@@ -6,9 +6,9 @@ export const hr = {
   homePath: "/",
   openGraphLocale: "hr_HR",
   seo: {
-    title: "Hashtag Blue | Arhitektonski ured i nekretnine Zagreb",
+    title: "Hashtag Blue | Arhitektura • Urbanizam • Razvoj nekretnina",
     description:
-      "Hashtag Blue je arhitektonski ured iz Zagreba specijaliziran za projektiranje, urbanizam, razvoj nekretnina i investicijsko savjetovanje.",
+      "Oblikujemo prostor i razvijamo nekretnine kroz arhitekturu, urbanizam i investicijsko savjetovanje. Profesionalna podrška od prve ideje do realizacije projekta.",
     imageAlt: "Hashtag Blue — arhitektonski ured i nekretnine Zagreb",
   },
   header: {
