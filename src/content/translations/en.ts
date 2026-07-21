@@ -8,7 +8,7 @@ export const en = {
   seo: {
     title: "Hashtag Blue | Architecture & Real Estate, Zagreb",
     description:
-      "A Zagreb architecture studio specialising in design, urban planning, real estate development and investment advisory.",
+      "We shape space and develop real estate through architecture, urban planning and investment advisory. Expert support throughout the entire project.",
     imageAlt: "Hashtag Blue — architecture and real estate, Zagreb",
   },
   header: {

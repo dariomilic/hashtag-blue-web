@@ -8,7 +8,7 @@ export const de = {
   seo: {
     title: "Hashtag Blue | Architektur und Immobilien, Zagreb",
     description:
-      "Architekturbüro in Zagreb — Planung, Stadtplanung, Immobilienentwicklung und Investitionsberatung.",
+      "Wir gestalten Raum und entwickeln Immobilien durch Architektur, Stadtplanung und Investitionsberatung. Fachkundige Begleitung über den gesamten Projektverlauf.",
     imageAlt: "Hashtag Blue — Architektur und Immobilien, Zagreb",
   },
   header: {

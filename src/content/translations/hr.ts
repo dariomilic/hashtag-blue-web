@@ -8,7 +8,7 @@ export const hr = {
   seo: {
     title: "Hashtag Blue | Arhitektura • Urbanizam • Razvoj nekretnina",
     description:
-      "Oblikujemo prostor i razvijamo nekretnine kroz arhitekturu, urbanizam i investicijsko savjetovanje. Profesionalna podrška od prve ideje do realizacije projekta.",
+      "Oblikujemo prostor i razvijamo nekretnine kroz arhitekturu, urbanizam i investicijsko savjetovanje. Stručna podrška tijekom cijelog projekta.",
     imageAlt: "Hashtag Blue — arhitektonski ured i nekretnine Zagreb",
   },
   header: {
