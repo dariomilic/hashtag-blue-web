@@ -5,6 +5,7 @@ import CounterStat from "@/components/CounterStat";
 import FadeIn from "@/components/FadeIn";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import BusinessAddressSection from "@/components/BusinessAddressSection";
 import SiteFooter from "@/components/SiteFooter";
 import SectionNumber from "@/components/SectionNumber";
 import { homepageMetadata } from "@/lib/seo";
@@ -255,6 +256,10 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <div className="section-spacer section-divider bg-background" aria-hidden="true" />
+
+      <BusinessAddressSection />
 
       <div className="section-spacer section-divider bg-background" aria-hidden="true" />
 

@@ -87,6 +87,34 @@ body {
   box-shadow: 0 24px 56px rgba(0, 0, 0, 0.14);
 }
 
+.business-address-service-card {
+  transition:
+    transform 250ms ease-out,
+    border-color 250ms ease-out,
+    box-shadow 250ms ease-out;
+}
+
+.group:hover.business-address-service-card {
+  transform: translateY(-3px);
+  border-color: rgba(32, 91, 140, 0.24);
+  box-shadow: 0 20px 46px rgba(0, 0, 0, 0.12);
+}
+
+.business-address-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .business-address-service-card {
+    transition: border-color 150ms ease-out;
+  }
+
+  .group:hover.business-address-service-card {
+    transform: none;
+  }
+}
+
 .brand-wordmark {
   font-family: var(--font-cormorant), Georgia, "Times New Roman", serif;
   letter-spacing: 0.06em;

@@ -11,6 +11,7 @@ import { BrandWordmark } from "@/components/HeaderWordmark";
 const navLinks = [
   { label: "Arhitektura", href: "/#arhitektura", sectionId: "arhitektura" },
   { label: "Nekretnine", href: "/#poslovanje-nekretninama", sectionId: "poslovanje-nekretninama" },
+  { label: "Poslovna adresa", href: "/#business-address", sectionId: "business-address" },
   { label: "Kontakt", href: "/#kontakt", sectionId: "kontakt" },
 ];
 
