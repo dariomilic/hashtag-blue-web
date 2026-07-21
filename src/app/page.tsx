@@ -6,6 +6,7 @@ import FadeIn from "@/components/FadeIn";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import BusinessAddressSection from "@/components/BusinessAddressSection";
+import ProjectLeadSection from "@/components/ProjectLeadSection";
 import SiteFooter from "@/components/SiteFooter";
 import SectionNumber from "@/components/SectionNumber";
 import { homepageMetadata } from "@/lib/seo";
@@ -233,6 +234,10 @@ export default function Home() {
 
       <div className="section-spacer section-divider bg-white" aria-hidden="true" />
 
+      <ProjectLeadSection />
+
+      <div className="section-spacer section-divider bg-white" aria-hidden="true" />
+
       {/* Real Estate */}
       <section
         id="poslovanje-nekretninama"
@@ -267,7 +272,7 @@ export default function Home() {
       <section className="bg-background px-6 py-32 md:px-10 md:py-40 lg:py-44">
         <div className="mx-auto max-w-[1200px]">
           <FadeIn className="mb-20 pt-2 md:mb-24">
-            <SectionNumber number="04" />
+            <SectionNumber number="05" />
             <div className="section-rule mb-6" aria-hidden="true" />
             <h2 className="font-heading text-[2.25rem] leading-[1.12] text-charcoal md:text-5xl">
               Kako izgleda suradnja
@@ -351,7 +356,7 @@ export default function Home() {
 
           <div className="flex flex-col justify-center px-6 py-24 md:px-10 md:py-32 lg:px-16 lg:py-40">
             <FadeIn>
-              <SectionNumber number="05" />
+              <SectionNumber number="06" />
               <div className="section-rule mb-6" aria-hidden="true" />
               <h2 className="title-accent font-heading mb-12 text-[2.25rem] leading-[1.12] text-charcoal md:mb-14 md:text-5xl">
                 Razgovarajmo o Vašem projektu.

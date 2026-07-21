@@ -9,6 +9,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import FadeIn from "@/components/FadeIn";
+import SectionNumber from "@/components/SectionNumber";
 
 const businessAddressServices: {
   title: string;
@@ -71,6 +72,7 @@ export default function BusinessAddressSection() {
         <div>
           <div className="mb-16 pt-2 md:mb-20">
             <FadeIn>
+              <SectionNumber number="04" />
               <div className="section-rule mb-6" aria-hidden="true" />
               <h2 className="font-heading text-[2.25rem] leading-[1.12] text-charcoal md:text-5xl">
                 Poslovna adresa za vaše poslovanje
