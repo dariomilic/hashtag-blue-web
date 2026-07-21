@@ -106,37 +106,113 @@ export const de = {
     ],
   },
   businessAddress: {
-    title: "Firmensitz und Geschäftsadresse",
-    subtitle:
-      "Eine professionelle Geschäftsadresse für Unternehmen, Gewerbetreibende und Einzelunternehmer.",
+    title: "Geschäftsadresse in Zagreb",
     description:
-      "Sichern Sie Ihrem Unternehmen oder Gewerbebetrieb einen verlässlichen Firmensitz. Wir übernehmen die Adressregistrierung, eine sichere Postannahme und administrative Unterstützung.",
+      "Nutzen Sie unsere Geschäftsadresse als registrierten Firmensitz Ihrer Gesellschaft oder Ihres Gewerbes und überlassen Sie die administrativen Aufgaben uns. Wir kümmern uns um die Postannahme, zeitnahe Benachrichtigungen und zuverlässige Unterstützung, damit Sie sich auf die Entwicklung Ihres Unternehmens konzentrieren können.",
+    benefits: [
+      "Registrierter Firmensitz",
+      "Zuverlässige Postverwaltung",
+      "Professionelle administrative Betreuung",
+    ],
+    whyTitle: "Warum Hashtag Blue",
     services: [
       {
-        title: "Adressregistrierung",
+        title: "Zuverlässige Postverwaltung",
         description:
-          "Nutzen Sie unsere Adresse als offiziellen Firmensitz Ihres Unternehmens oder Gewerbebetriebs.",
+          "Jede Sendung nehmen wir entgegen, erfassen und bearbeiten sie sorgfältig, damit Sie stets rechtzeitig über Ihre Geschäftspost informiert sind.",
       },
       {
-        title: "Postannahme",
-        description: "Sichere Annahme und Aufbewahrung Ihrer eingehenden Post.",
+        title: "Transparente Zusammenarbeit",
+        description:
+          "Die Nutzungsbedingungen sind im Voraus klar definiert, damit Sie von Anfang an wissen, was Sie erwarten können.",
       },
       {
-        title: "Benachrichtigung bei Posteingang",
-        description: "Sie werden umgehend über jede eingegangene Sendung informiert.",
+        title: "Direkte Kommunikation",
+        description:
+          "Sie haben einen direkten Ansprechpartner und Antworten während der Geschäftszeiten — ohne unnötigen Aufwand.",
       },
       {
-        title: "Scannen und Weiterleitung",
-        description: "Auf Wunsch scannen und leiten wir Ihre Post weiter.",
+        title: "Flexible Betreuung",
+        description:
+          "Wir gestalten die Zusammenarbeit nach Ihrer Arbeitsweise, nicht nach einem starren Leistungspaket.",
+      },
+    ],
+    includedTitle: "Leistungsumfang",
+    includedItems: [
+      "Registrierter Firmensitz",
+      "Annahme von Standardpost",
+      "Annahme von Einschreiben",
+      "Paketannahme",
+      "Benachrichtigung bei jeder Sendung",
+      "Dokumentenscan nach Vereinbarung",
+      "Postweiterleitung nach Vereinbarung",
+      "Persönliche Abholung nach Terminvereinbarung",
+    ],
+    audienceTitle: "Für wen ist der Service gedacht?",
+    audienceDescription: [
+      "Der Service richtet sich an neu gegründete Unternehmer, Gewerbetreibende und Gesellschaften, die einen Firmensitz in Zagreb benötigen.",
+      "Er ist besonders geeignet für alle, die im Außendienst tätig sind, internationale Firmen mit Präsenzbedarf in Kroatien sowie für diejenigen, die ihre Administration ohne eigene Büroflächen organisieren möchten.",
+    ],
+    processTitle: "So läuft die Zusammenarbeit",
+    processSteps: [
+      {
+        title: "Anfrage senden",
+        description:
+          "Senden Sie uns eine Anfrage per E-Mail oder Telefon mit einigen grundlegenden Informationen zu Ihrem Unternehmen.",
+      },
+      {
+        title: "Angebot erstellen",
+        description:
+          "Wir besprechen Ihre Anforderungen und erstellen ein auf Ihr Unternehmen zugeschnittenes Angebot.",
+      },
+      {
+        title: "Nutzung beginnen",
+        description:
+          "Nach Vertragsabschluss können Sie die Adresse für Ihre Gesellschaft oder Ihr Gewerbe nutzen.",
+      },
+    ],
+    faqTitle: "Häufige Fragen",
+    faq: [
+      {
+        question: "Kann ich eine GmbH oder ein Gewerbe registrieren?",
+        answer:
+          "Ja. Die Adresse können Sie als registrierten Firmensitz einer Gesellschaft oder eines Gewerbes nutzen — gemäß geltender Vorschriften und den Nutzungsbedingungen.",
+      },
+      {
+        question: "Wie funktioniert die Postannahme?",
+        answer:
+          "Alle Sendungen nehmen wir entgegen, erfassen den Eingang und bewahren sie auf, bis Sie sie abholen oder eine Weiterleitung vereinbaren.",
+      },
+      {
+        question: "Wie schnell werde ich benachrichtigt?",
+        answer:
+          "Über eingehende Sendungen informieren wir Sie innerhalb der Geschäftszeiten so zeitnah wie möglich.",
+      },
+      {
+        question: "Kann ich Post persönlich abholen?",
+        answer:
+          "Ja. Die Abholung ist nach vorheriger Terminvereinbarung während der Geschäftszeiten in unserem Büro möglich. Auf Wunsch organisieren wir auch eine Weiterleitung an eine andere Adresse.",
+      },
+      {
+        question: "Was passiert bei Einschreiben oder Paketen?",
+        answer:
+          "Auch diese nehmen wir entgegen. Wir informieren Sie über den Eingang und vereinbaren Abholung oder Weiterleitung.",
+      },
+      {
+        question: "Gibt es versteckte Kosten?",
+        answer:
+          "Nein. Konditionen und sämtliche Kosten sind vor Vertragsabschluss klar definiert. Zusatzleistungen wie die Weiterleitung werden nur berechnet, wenn Sie sie in Anspruch nehmen.",
       },
     ],
     contactLabel: "Kontakt",
+    contactDescription:
+      "Jedes Unternehmen hat seine eigenen Anforderungen. Kontaktieren Sie uns — wir erstellen ein Angebot, das auf Ihr Unternehmen und Ihre Art zu arbeiten zugeschnitten ist.",
     name: "Sara Milić",
     role: "Unternehmensservice",
     imageAlt: "Sara Milić — Geschäftsadresse, Hashtag Blue",
     businessHoursLabel: "Geschäftszeiten",
     businessHours: "Mo – Fr | 09:00 – 17:00",
-    cta: "Anfrage senden",
+    cta: "Angebot anfordern",
     mailSubject: "Anfrage Geschäftsadresse",
   },
   process: {

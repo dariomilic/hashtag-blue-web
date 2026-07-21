@@ -106,35 +106,113 @@ export const hr = {
     ],
   },
   businessAddress: {
-    title: "Poslovna adresa za vaše poslovanje",
-    subtitle: "Profesionalna poslovna adresa za trgovačka društva, obrte i poduzetnike.",
+    title: "Poslovna adresa u Zagrebu",
     description:
-      "Osigurajte pouzdano i profesionalno sjedište za svoje trgovačko društvo ili obrt. Nudimo uslugu registracije poslovne adrese uz sigurno zaprimanje pošte i administrativnu podršku.",
+      "Koristite našu poslovnu adresu kao registrirano sjedište svoje tvrtke ili obrta, a administrativne obveze prepustite nama. Brinemo o zaprimanju pošte, pravovremenim obavijestima i pouzdanoj podršci kako biste se mogli usredotočiti na razvoj svog poslovanja.",
+    benefits: [
+      "Registrirano poslovno sjedište",
+      "Pouzdano upravljanje poštom",
+      "Profesionalna administrativna podrška",
+    ],
+    whyTitle: "Zašto Hashtag Blue",
     services: [
       {
-        title: "Registracija poslovne adrese",
-        description: "Koristite našu adresu kao službeno sjedište vašeg društva ili obrta.",
+        title: "Pouzdano upravljanje poštom",
+        description:
+          "Svaku pošiljku zaprimamo, evidentiramo i obrađujemo pažljivo kako biste uvijek imali pravovremenu informaciju o svojoj poslovnoj pošti.",
       },
       {
-        title: "Zaprimanje pošte",
-        description: "Sigurno zaprimanje i čuvanje pristigle pošte.",
+        title: "Transparentna suradnja",
+        description:
+          "Uvjeti korištenja usluge jasno su definirani unaprijed kako biste od samog početka znali što možete očekivati.",
       },
       {
-        title: "Obavijest o pošti",
-        description: "Pravovremena obavijest o svakoj pristigloj pošiljci.",
+        title: "Izravna komunikacija",
+        description:
+          "Imate izravni kontakt i odgovore tijekom radnog vremena — bez nepotrebnih komplikacija.",
       },
       {
-        title: "Skeniranje i prosljeđivanje",
-        description: "Po dogovoru omogućujemo skeniranje i prosljeđivanje pošte.",
+        title: "Prilagodljiva podrška",
+        description:
+          "Suradnju oblikujemo prema načinu na koji poslujete, a ne prema krutom paketu usluga.",
+      },
+    ],
+    includedTitle: "Što uključuje usluga",
+    includedItems: [
+      "Registrirano poslovno sjedište",
+      "Zaprimanje obične pošte",
+      "Zaprimanje preporučene pošte",
+      "Zaprimanje paketa",
+      "Obavijest o svakoj pristigloj pošiljci",
+      "Skeniranje dokumentacije prema dogovoru",
+      "Prosljeđivanje pošte prema dogovoru",
+      "Osobno preuzimanje uz prethodni dogovor",
+    ],
+    audienceTitle: "Kome je usluga namijenjena?",
+    audienceDescription: [
+      "Usluga je namijenjena novoosnovanim poduzetnicima, obrtima i trgovačkim društvima kojima je potrebno sjedište u Zagrebu.",
+      "Posebno je prikladna za one koji rade na terenu, međunarodne tvrtke s potrebom za prisutnošću u Hrvatskoj te sve koji žele urediti administraciju bez vlastitog uredskog prostora.",
+    ],
+    processTitle: "Kako izgleda suradnja",
+    processSteps: [
+      {
+        title: "Pošaljite upit",
+        description:
+          "Pošaljite nam upit putem e-pošte ili telefona uz nekoliko osnovnih informacija o vašem poslovanju.",
+      },
+      {
+        title: "Pripremamo ponudu",
+        description:
+          "Razgovaramo o vašim potrebama i pripremamo ponudu prilagođenu vašem poslovanju.",
+      },
+      {
+        title: "Početak korištenja usluge",
+        description:
+          "Nakon sklapanja ugovora možete započeti korištenje adrese za potrebe svoje tvrtke ili obrta.",
+      },
+    ],
+    faqTitle: "Najčešća pitanja",
+    faq: [
+      {
+        question: "Mogu li registrirati d.o.o. ili obrt?",
+        answer:
+          "Da. Adresu možete koristiti kao registrirano poslovno sjedište trgovačkog društva ili obrta, u skladu s važećim propisima i uvjetima korištenja usluge.",
+      },
+      {
+        question: "Kako funkcionira zaprimanje pošte?",
+        answer:
+          "Sve pošiljke zaprimamo, evidentiramo i čuvamo do osobnog preuzimanja ili prosljeđivanja prema dogovoru.",
+      },
+      {
+        question: "Koliko brzo dobivam obavijest?",
+        answer:
+          "O pristigloj pošiljci obavještavamo vas u najkraćem mogućem roku tijekom radnog vremena.",
+      },
+      {
+        question: "Mogu li osobno preuzeti poštu?",
+        answer:
+          "Da. Preuzimanje je moguće u našem uredu uz prethodni dogovor tijekom radnog vremena. Po potrebi možemo organizirati i prosljeđivanje na drugu adresu.",
+      },
+      {
+        question: "Što ako stigne preporučena pošiljka ili paket?",
+        answer:
+          "I njih zaprimamo. Obavještavamo vas o primitku i dogovaramo način preuzimanja ili prosljeđivanja.",
+      },
+      {
+        question: "Postoje li skriveni troškovi?",
+        answer:
+          "Ne. Uvjeti i svi troškovi jasno su definirani prije sklapanja ugovora. Dodatne usluge, poput prosljeđivanja, naplaćuju se isključivo ako ih zatražite.",
       },
     ],
     contactLabel: "Kontakt",
+    contactDescription:
+      "Svako poslovanje ima svoje specifične potrebe. Kontaktirajte nas kako bismo vam pripremili ponudu prilagođenu vašoj tvrtki i načinu poslovanja.",
     name: "Sara Milić",
     role: "Poslovna podrška",
     imageAlt: "Sara Milić – kontakt za uslugu poslovne adrese",
     businessHoursLabel: "Radno vrijeme",
     businessHours: "Pon – Pet | 09:00 – 17:00",
-    cta: "Zatražite informacije",
+    cta: "Zatražite ponudu",
     mailSubject: "Upit za uslugu poslovne adrese",
   },
   process: {

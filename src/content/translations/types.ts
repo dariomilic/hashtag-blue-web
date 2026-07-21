@@ -12,6 +12,11 @@ export type ProcessStepContent = {
   description: string;
 };
 
+export type FaqItemContent = {
+  question: string;
+  answer: string;
+};
+
 export type WorkingHoursRow = {
   day: string;
   hours: string;
@@ -82,15 +87,45 @@ export type TranslationDictionary = {
   };
   businessAddress: {
     title: string;
-    subtitle: string;
     description: string;
+    benefits: readonly [string, string, string];
+    whyTitle: string;
     services: readonly [
       ServiceContent,
       ServiceContent,
       ServiceContent,
       ServiceContent,
     ];
+    includedTitle: string;
+    includedItems: readonly [
+      string,
+      string,
+      string,
+      string,
+      string,
+      string,
+      string,
+      string,
+    ];
+    audienceTitle: string;
+    audienceDescription: readonly [string, string];
+    processTitle: string;
+    processSteps: readonly [
+      ProcessStepContent,
+      ProcessStepContent,
+      ProcessStepContent,
+    ];
+    faqTitle: string;
+    faq: readonly [
+      FaqItemContent,
+      FaqItemContent,
+      FaqItemContent,
+      FaqItemContent,
+      FaqItemContent,
+      FaqItemContent,
+    ];
     contactLabel: string;
+    contactDescription: string;
     name: "Sara Milić";
     role: string;
     imageAlt: string;

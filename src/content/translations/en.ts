@@ -106,35 +106,113 @@ export const en = {
     ],
   },
   businessAddress: {
-    title: "Registered Office & Business Address",
-    subtitle: "A professional registered address for companies, trades and sole traders.",
+    title: "Business Address in Zagreb",
     description:
-      "Establish a reliable registered office for your company or trade. We provide address registration, secure mail handling and administrative support.",
+      "Use our business address as the registered office of your company or trade, and leave the administrative responsibilities to us. We take care of mail handling, timely notifications and reliable support so you can focus on growing your business.",
+    benefits: [
+      "Registered business address",
+      "Reliable mail handling",
+      "Professional administrative support",
+    ],
+    whyTitle: "Why Hashtag Blue",
     services: [
       {
-        title: "Address Registration",
-        description: "Use our address as the official registered office of your company or trade.",
+        title: "Reliable mail handling",
+        description:
+          "We receive, log and carefully process every delivery so you always have timely information about your business mail.",
       },
       {
-        title: "Mail Handling",
-        description: "Secure receipt and storage of incoming correspondence.",
+        title: "Transparent collaboration",
+        description:
+          "The terms of the service are clearly defined in advance so you know what to expect from the very start.",
       },
       {
-        title: "Mail Notifications",
-        description: "Prompt notification when new mail arrives.",
+        title: "Direct communication",
+        description:
+          "You have a direct contact and responses during business hours — without unnecessary complexity.",
       },
       {
-        title: "Scanning & Forwarding",
-        description: "Scanning and forwarding available on request.",
+        title: "Flexible support",
+        description:
+          "We shape the collaboration around the way you work, not around a rigid service package.",
+      },
+    ],
+    includedTitle: "What the service includes",
+    includedItems: [
+      "Registered business address",
+      "Regular mail handling",
+      "Registered mail handling",
+      "Parcel receipt",
+      "Notification for every delivery",
+      "Document scanning by arrangement",
+      "Mail forwarding by arrangement",
+      "Personal collection by prior appointment",
+    ],
+    audienceTitle: "Who is the service for?",
+    audienceDescription: [
+      "The service is intended for newly established entrepreneurs, sole traders and companies that need an address in Zagreb.",
+      "It is particularly suited to those who work in the field, international companies that need a presence in Croatia, and anyone who wants to manage administration without maintaining their own office space.",
+    ],
+    processTitle: "How we work together",
+    processSteps: [
+      {
+        title: "Send an enquiry",
+        description:
+          "Send us an enquiry by email or phone with a few basic details about your business.",
+      },
+      {
+        title: "We prepare your quote",
+        description:
+          "We discuss your needs and prepare a quote tailored to the way you operate.",
+      },
+      {
+        title: "Service begins",
+        description:
+          "Once the agreement is signed, you can begin using the address for your company or trade.",
+      },
+    ],
+    faqTitle: "Common questions",
+    faq: [
+      {
+        question: "Can I register a company or sole trade with this address?",
+        answer:
+          "Yes. You may use the address as the registered office of a company or sole trade, in accordance with applicable regulations and the terms of the service.",
+      },
+      {
+        question: "How does mail handling work?",
+        answer:
+          "All deliveries are received, logged and held until you collect them in person or arrange forwarding as agreed.",
+      },
+      {
+        question: "How quickly will I be notified?",
+        answer:
+          "We notify you about incoming deliveries as promptly as possible during business hours.",
+      },
+      {
+        question: "Can I collect mail in person?",
+        answer:
+          "Yes. Collection is available at our office by prior appointment during business hours. If required, we can also arrange forwarding to another address.",
+      },
+      {
+        question: "What happens if registered mail or a parcel arrives?",
+        answer:
+          "We receive those as well. We notify you of receipt and arrange collection or forwarding.",
+      },
+      {
+        question: "Are there any hidden costs?",
+        answer:
+          "No. Terms and all costs are clearly defined before the agreement is signed. Additional services, such as forwarding, are charged only if you request them.",
       },
     ],
     contactLabel: "Contact",
+    contactDescription:
+      "Every business has its own specific requirements. Contact us and we will prepare a quote tailored to your company and the way you operate.",
     name: "Sara Milić",
     role: "Business Support",
     imageAlt: "Sara Milić — Business Address, Hashtag Blue",
     businessHoursLabel: "Business Hours",
     businessHours: "Mon – Fri | 09:00 – 17:00",
-    cta: "Enquire",
+    cta: "Request a quote",
     mailSubject: "Business Address Enquiry",
   },
   process: {
