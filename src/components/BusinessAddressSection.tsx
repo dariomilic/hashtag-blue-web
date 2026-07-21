@@ -10,33 +10,9 @@ import {
 } from "lucide-react";
 import FadeIn from "@/components/FadeIn";
 import SectionNumber from "@/components/SectionNumber";
+import type { TranslationDictionary } from "@/content/translations";
 
-const businessAddressServices: {
-  title: string;
-  description: string;
-  icon: LucideIcon;
-}[] = [
-  {
-    title: "Registracija poslovne adrese",
-    description: "Koristite našu adresu kao službeno sjedište vašeg društva ili obrta.",
-    icon: Building2,
-  },
-  {
-    title: "Zaprimanje pošte",
-    description: "Sigurno zaprimanje i čuvanje pristigle pošte.",
-    icon: Inbox,
-  },
-  {
-    title: "Obavijest o pošti",
-    description: "Pravovremena obavijest o svakoj pristigloj pošiljci.",
-    icon: Bell,
-  },
-  {
-    title: "Skeniranje i prosljeđivanje",
-    description: "Po dogovoru omogućujemo skeniranje i prosljeđivanje pošte.",
-    icon: ScanLine,
-  },
-];
+const businessAddressIcons: readonly LucideIcon[] = [Building2, Inbox, Bell, ScanLine];
 
 function BusinessAddressCard({
   title,
@@ -62,7 +38,11 @@ function BusinessAddressCard({
   );
 }
 
-export default function BusinessAddressSection() {
+type BusinessAddressSectionProps = {
+  content: TranslationDictionary["businessAddress"];
+};
+
+export default function BusinessAddressSection({ content }: BusinessAddressSectionProps) {
   return (
     <section
       id="business-address"
@@ -75,25 +55,23 @@ export default function BusinessAddressSection() {
               <SectionNumber number="04" />
               <div className="section-rule mb-6" aria-hidden="true" />
               <h2 className="font-heading text-[2.25rem] leading-[1.12] text-charcoal md:text-5xl">
-                Poslovna adresa za vaše poslovanje
+                {content.title}
               </h2>
               <p className="mt-5 text-[15px] leading-[1.85] text-muted md:text-base">
-                Profesionalna poslovna adresa za trgovačka društva, obrte i poduzetnike.
+                {content.subtitle}
               </p>
             </FadeIn>
             <FadeIn delay={100}>
               <p className="mt-8 max-w-2xl text-[15px] leading-[1.85] text-muted md:text-base">
-                Osigurajte pouzdano i profesionalno sjedište za svoje trgovačko društvo ili obrt.
-                Nudimo uslugu registracije poslovne adrese uz sigurno zaprimanje pošte i
-                administrativnu podršku.
+                {content.description}
               </p>
             </FadeIn>
           </div>
 
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:gap-9">
-            {businessAddressServices.map((service, index) => (
+            {content.services.map((service, index) => (
               <FadeIn key={service.title} delay={index * 80} className="h-full">
-                <BusinessAddressCard {...service} />
+                <BusinessAddressCard {...service} icon={businessAddressIcons[index]} />
               </FadeIn>
             ))}
           </div>
@@ -107,7 +85,7 @@ export default function BusinessAddressSection() {
             <div className="relative h-[380px] w-full overflow-hidden rounded-[22px] bg-light-grey md:h-[410px] lg:h-[390px]">
               <Image
                 src="/images/sara-milic.jpg"
-                alt="Sara Milić – kontakt osoba za uslugu poslovne adrese"
+                alt={content.imageAlt}
                 fill
                 loading="lazy"
                 sizes="(max-width: 1023px) calc(100vw - 128px), 400px"
@@ -117,14 +95,14 @@ export default function BusinessAddressSection() {
 
             <div className="px-1 pt-6 pb-1 text-center md:px-3 lg:text-left">
               <p className="mb-3 text-[11px] font-medium tracking-[0.16em] text-accent uppercase">
-                Kontakt
+                {content.contactLabel}
               </p>
               <div className="mb-5 border-b border-border-light/80 pb-5">
                 <h3 className="font-heading text-[2rem] leading-tight text-charcoal md:text-[2.25rem]">
-                  Sara Milić
+                  {content.name}
                 </h3>
                 <p className="mt-1 text-[14px] leading-relaxed text-muted">
-                  Poslovna podrška
+                  {content.role}
                 </p>
               </div>
 
@@ -159,18 +137,18 @@ export default function BusinessAddressSection() {
 
               <div className="mb-5 w-full space-y-1.5">
                 <p className="text-[12px] font-medium tracking-[0.12em] text-charcoal uppercase">
-                  Radno vrijeme
+                  {content.businessHoursLabel}
                 </p>
                 <p className="text-[14px] leading-relaxed text-muted">
-                  Pon – Pet | 09:00 – 17:00
+                  {content.businessHours}
                 </p>
               </div>
 
               <a
-                href="mailto:sara@hashtag-blue.com?subject=Upit%20za%20poslovnu%20adresu"
+                href={`mailto:sara@hashtag-blue.com?subject=${encodeURIComponent(content.mailSubject)}`}
                 className="business-address-link btn-cta w-full"
               >
-                Zatražite informacije
+                {content.cta}
               </a>
             </div>
           </aside>

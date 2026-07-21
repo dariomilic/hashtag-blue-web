@@ -1,19 +1,8 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
 import { logos } from "@/lib/brand";
+import { cormorant, inter } from "@/lib/fonts";
 import { rootMetadata } from "@/lib/seo";
-import "./globals.css";
-
-const cormorant = Cormorant_Garamond({
-  weight: ["400", "500", "600"],
-  subsets: ["latin", "latin-ext"],
-  variable: "--font-cormorant",
-});
-
-const inter = Inter({
-  subsets: ["latin", "latin-ext"],
-  variable: "--font-inter",
-});
+import "../globals.css";
 
 export const metadata: Metadata = {
   ...rootMetadata,
@@ -22,7 +11,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default function LegalRootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

@@ -7,18 +7,16 @@ import { useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import BrandLogo from "@/components/BrandLogo";
 import { BrandWordmark } from "@/components/HeaderWordmark";
-
-const navLinks = [
-  { label: "Arhitektura", href: "/#arhitektura", sectionId: "arhitektura" },
-  { label: "Nekretnine", href: "/#poslovanje-nekretninama", sectionId: "poslovanje-nekretninama" },
-  { label: "Poslovna adresa", href: "/#business-address", sectionId: "business-address" },
-  { label: "Kontakt", href: "/#kontakt", sectionId: "kontakt" },
-] as const;
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import type { Locale, TranslationDictionary } from "@/content/translations";
 
 type MobileMenuProps = {
   open: boolean;
   onClose: () => void;
   activeSection: string | null;
+  locale: Locale;
+  content: TranslationDictionary["header"];
+  languagePaths?: Record<Locale, string>;
 };
 
 const MENU_TRANSITION = { duration: 0.28, ease: "easeOut" as const };
@@ -26,11 +24,15 @@ const MENU_TRANSITION = { duration: 0.28, ease: "easeOut" as const };
 function MobileNavLink({
   href,
   label,
+  sectionId,
+  homePath,
   active,
   onClose,
 }: {
   href: string;
   label: string;
+  sectionId: string;
+  homePath: string;
   active: boolean;
   onClose: () => void;
 }) {
@@ -41,10 +43,8 @@ function MobileNavLink({
     event.preventDefault();
     onClose();
 
-    const sectionId = href.startsWith("/#") ? href.slice(2) : null;
-
     window.setTimeout(() => {
-      if (pathname === "/" && sectionId) {
+      if (pathname === homePath) {
         document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
         return;
       }
@@ -57,7 +57,7 @@ function MobileNavLink({
     <Link
       href={href}
       onClick={handleClick}
-      className="relative block pl-6 font-heading text-[38px] font-medium leading-[1.2] text-[#1C1C1C] transition-colors duration-200 active:text-[#205B8C]"
+      className="relative block min-h-11 pl-6 font-heading text-[clamp(2rem,9vw,2.375rem)] font-medium leading-[1.2] text-[#1C1C1C] transition-colors duration-200 active:text-[#205B8C]"
     >
       {active && (
         <span
@@ -70,7 +70,14 @@ function MobileNavLink({
   );
 }
 
-export default function MobileMenu({ open, onClose, activeSection }: MobileMenuProps) {
+export default function MobileMenu({
+  open,
+  onClose,
+  activeSection,
+  locale,
+  content,
+  languagePaths,
+}: MobileMenuProps) {
   const mounted = useSyncExternalStore(
     () => () => {},
     () => true,
@@ -79,6 +86,30 @@ export default function MobileMenu({ open, onClose, activeSection }: MobileMenuP
 
   if (!mounted) return null;
 
+  const homePath = locale === "hr" ? "/" : `/${locale}`;
+  const navLinks = [
+    {
+      label: content.nav.architecture,
+      href: `${homePath}#architecture`,
+      sectionId: "architecture",
+    },
+    {
+      label: content.nav.realEstate,
+      href: `${homePath}#real-estate`,
+      sectionId: "real-estate",
+    },
+    {
+      label: content.nav.businessAddress,
+      href: `${homePath}#business-address`,
+      sectionId: "business-address",
+    },
+    {
+      label: content.nav.contact,
+      href: `${homePath}#contact`,
+      sectionId: "contact",
+    },
+  ];
+
   return createPortal(
     <AnimatePresence>
       {open && (
@@ -86,19 +117,19 @@ export default function MobileMenu({ open, onClose, activeSection }: MobileMenuP
           id="mobile-nav"
           role="dialog"
           aria-modal="true"
-          aria-label="Glavni izbornik"
+          aria-label={content.mobileDialogLabel}
           initial={{ opacity: 0, y: -16 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -16 }}
           transition={MENU_TRANSITION}
-          className="fixed inset-0 z-[200] flex min-h-dvh flex-col bg-[#FFFFFF] md:hidden"
+          className="fixed inset-0 z-[200] flex min-h-dvh flex-col bg-[#FFFFFF] lg:hidden"
           style={{ touchAction: "none" }}
         >
           <div className="flex h-[var(--header-height)] shrink-0 items-center justify-between px-8">
             <Link
-              href="/"
+              href={homePath}
               onClick={onClose}
-              aria-label="Hashtag Blue — početna"
+              aria-label={content.logoAriaLabel}
               className="flex items-center gap-[18px]"
             >
               <BrandLogo variant="black" className="h-[52px] w-auto" />
@@ -108,7 +139,7 @@ export default function MobileMenu({ open, onClose, activeSection }: MobileMenuP
             <button
               type="button"
               onClick={onClose}
-              aria-label="Zatvori izbornik"
+              aria-label={content.closeMenuLabel}
               className="flex h-10 w-10 items-center justify-center text-[#1C1C1C]"
             >
               <span className="relative block h-5 w-5" aria-hidden="true">
@@ -118,13 +149,15 @@ export default function MobileMenu({ open, onClose, activeSection }: MobileMenuP
             </button>
           </div>
 
-          <nav aria-label="Mobilna navigacija" className="flex-1 px-8 pt-8">
-            <ul className="flex flex-col gap-[48px]">
+          <nav aria-label={content.mobileNavAriaLabel} className="flex-1 px-8 pt-6">
+            <ul className="flex flex-col gap-8 sm:gap-10">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <MobileNavLink
                     href={link.href}
                     label={link.label}
+                    sectionId={link.sectionId}
+                    homePath={homePath}
                     active={activeSection === link.sectionId}
                     onClose={onClose}
                   />
@@ -133,12 +166,23 @@ export default function MobileMenu({ open, onClose, activeSection }: MobileMenuP
             </ul>
           </nav>
 
+          <div className="shrink-0 px-8 py-5">
+            <LanguageSwitcher
+              locale={locale}
+              ariaLabel={content.languageAriaLabel}
+              variant="mobile"
+              activeSection={activeSection}
+              languagePaths={languagePaths}
+              onNavigate={onClose}
+            />
+          </div>
+
           <footer className="shrink-0 border-t border-[#E9ECEF] px-8 pt-6 pb-10">
             <p className="brand-wordmark text-[13px] font-medium tracking-[0.14em] text-[#205B8C] uppercase">
               Hashtag Blue
             </p>
             <p className="mt-2 text-[13px] leading-relaxed text-[#888888]">
-              Arhitektura | Urbanizam | Nekretnine
+              {content.mobileFooterDisciplines}
             </p>
           </footer>
         </motion.div>

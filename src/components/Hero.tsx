@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useRef } from "react";
 import { brandPhotos } from "@/lib/photos";
 import ScrollIndicator from "@/components/ScrollIndicator";
+import type { TranslationDictionary } from "@/content/translations";
 
 const heroStagger = {
   hidden: {},
@@ -25,7 +26,11 @@ const heroItem = {
   },
 };
 
-export default function Hero() {
+type HeroProps = {
+  content: TranslationDictionary["hero"];
+};
+
+export default function Hero({ content }: HeroProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const prefersReducedMotion = useReducedMotion();
 
@@ -38,6 +43,7 @@ export default function Hero() {
 
   return (
     <section
+      id="hero"
       ref={sectionRef}
       className="relative -mt-[var(--header-height)] flex min-h-screen items-center overflow-hidden pt-[var(--header-height)]"
     >
@@ -79,33 +85,32 @@ export default function Hero() {
             variants={heroItem}
             className="font-heading mt-7 text-[clamp(2.48rem,6.05vw,4.13rem)] leading-[1.14] text-[#F7F6F4]"
           >
-            Arhitektura.
+            {content.disciplines[0]}
             <br />
-            Urbanizam.
+            {content.disciplines[1]}
             <br />
-            Nekretnine.
+            {content.disciplines[2]}
           </motion.p>
 
           <motion.p
             variants={heroItem}
             className="mt-10 text-[15px] leading-[1.95] text-[#F7F6F4]/88 md:mt-12 md:text-base"
           >
-            Arhitektonski ured iz Zagreba specijaliziran za projektiranje privatnih kuća i zgrada
-            te poslovanje nekretninama.
+            {content.description}
           </motion.p>
 
           <motion.div variants={heroItem} className="mt-12 flex flex-wrap gap-4 md:mt-14">
-            <a href="#arhitektura" className="btn-primary">
-              Naše usluge
+            <a href="#architecture" className="btn-primary">
+              {content.servicesCta}
             </a>
-            <a href="#kontakt" className="btn-secondary">
-              Kontakt
+            <a href="#contact" className="btn-secondary">
+              {content.contactCta}
             </a>
           </motion.div>
         </motion.div>
       </div>
 
-      <ScrollIndicator />
+      <ScrollIndicator ariaLabel={content.scrollLabel} />
     </section>
   );
 }

@@ -4,7 +4,7 @@
 
 Ovom Politikom kolačića Hashtag Blue d.o.o., sa sjedištem na adresi Mirka Viriusa 14, 10 000 Zagreb, OIB: 16186180581, MBS: 081488508 (Trgovački sud u Zagrebu) (dalje: Društvo ili mi), obavještava posjetitelje mrežne stranice www.hashtag-blue.com o upotrebi kolačića, u skladu s Uredbe (EU) 2016/679 Europskog parlamenta i Vijeća od 27. travnja 2016. o zaštiti pojedinaca u vezi s obradom osobnih podataka i o slobodnom kretanju takvih podataka te o stavljanju izvan snage Direktive 95/46/EZ (dalje: GDPR), Zakonom o provedbi Opće uredbe o zaštiti podataka (NN 42/2018) i Zakonom o elektroničkim komunikacijama (NN 76/2022, 14/2024).
 
-Politika nadopunjuje Politiku privatnosti [link] Društva i s njom čini cjelinu.
+Politika nadopunjuje [Politiku privatnosti](/politika-privatnosti) Društva i s njom čini cjelinu.
 
 ## 2. Što su kolačići?
 

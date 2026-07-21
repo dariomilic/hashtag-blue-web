@@ -1,9 +1,12 @@
 import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
+import type { TranslationDictionary } from "@/content/translations";
 
-const expertise = ["Arhitektura", "Urbanizam", "Razvoj nekretnina"];
+type ProjectLeadSectionProps = {
+  content: TranslationDictionary["projectLead"];
+};
 
-export default function ProjectLeadSection() {
+export default function ProjectLeadSection({ content }: ProjectLeadSectionProps) {
   return (
     <section
       id="project-lead"
@@ -15,7 +18,7 @@ export default function ProjectLeadSection() {
           <div className="relative mx-auto aspect-[4/5] w-full max-w-[560px] overflow-hidden rounded-[20px] bg-light-grey shadow-[0_20px_55px_rgba(28,28,28,0.14)]">
             <Image
               src="/images/dario-milic.jpg"
-              alt="Dario Milić – voditelj projekata Hashtag Blue"
+              alt={content.imageAlt}
               fill
               loading="lazy"
               quality={100}
@@ -28,42 +31,36 @@ export default function ProjectLeadSection() {
         <div className="text-center lg:text-left">
           <FadeIn>
             <p className="mb-5 text-[11px] font-medium tracking-[0.16em] text-accent uppercase">
-              Voditelj projekata
+              {content.label}
             </p>
             <div className="section-rule mx-auto mb-7 lg:mx-0" aria-hidden="true" />
             <h2
               id="project-lead-title"
               className="font-heading text-[2.75rem] leading-[1.05] text-charcoal md:text-[3.5rem]"
             >
-              Dario Milić
+              {content.name}
             </h2>
             <p className="mt-5 text-[15px] font-medium text-charcoal md:text-base">
-              mag.ing.arh. i urb.
+              {content.degree}
             </p>
             <p className="mt-2 text-[13px] tracking-[0.08em] text-muted uppercase">
-              Osnivač i direktor | Hashtag Blue
+              {content.role}
             </p>
           </FadeIn>
 
           <FadeIn delay={100}>
             <div className="mx-auto mt-10 max-w-xl space-y-5 text-[15px] leading-[1.9] text-muted md:text-base lg:mx-0">
-              <p>
-                Specijaliziran za projektiranje stambenih i višestambenih građevina,
-                urbanističke analize te razvoj nekretninskih projekata.
-              </p>
-              <p>
-                Cilj nam je svakom klijentu pružiti stručno, funkcionalno i dugoročno održivo
-                rješenje prilagođeno njegovim potrebama.
-              </p>
+              <p>{content.description[0]}</p>
+              <p>{content.description[1]}</p>
             </div>
           </FadeIn>
 
           <FadeIn delay={160}>
             <ul
               className="mt-10 flex flex-wrap justify-center gap-3 lg:justify-start"
-              aria-label="Područja rada"
+              aria-label={content.expertiseAriaLabel}
             >
-              {expertise.map((item) => (
+              {content.expertise.map((item) => (
                 <li
                   key={item}
                   className="rounded-full border border-border-light bg-background px-4 py-2 text-[11px] font-medium tracking-[0.1em] text-charcoal uppercase"
@@ -75,8 +72,8 @@ export default function ProjectLeadSection() {
           </FadeIn>
 
           <FadeIn delay={220}>
-            <a href="#kontakt" className="btn-cta mt-12">
-              Dogovorite konzultacije
+            <a href="#contact" className="btn-cta mt-12">
+              {content.cta}
             </a>
           </FadeIn>
         </div>

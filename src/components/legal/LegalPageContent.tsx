@@ -1,20 +1,29 @@
 import LegalLayout from "@/components/legal/LegalLayout";
 import MarkdownRenderer from "@/components/legal/MarkdownRenderer";
-import { getLegalMarkdown, LEGAL_PAGES, type LegalSlug } from "@/lib/legal";
+import {
+  getLegalDocument,
+  getLegalLanguagePaths,
+  type LegalDocumentKey,
+} from "@/content/legal";
+import type { Locale } from "@/content/translations";
 
 type LegalPageContentProps = {
-  slug: LegalSlug;
+  locale: Locale;
+  documentKey: LegalDocumentKey;
 };
 
-export default async function LegalPageContent({ slug }: LegalPageContentProps) {
-  const content = await getLegalMarkdown(slug);
-  const { title } = LEGAL_PAGES[slug];
+export default async function LegalPageContent({
+  locale,
+  documentKey,
+}: LegalPageContentProps) {
+  const document = await getLegalDocument(locale, documentKey);
+  const languagePaths = getLegalLanguagePaths(documentKey);
 
   return (
-    <LegalLayout>
-      <article aria-label={title}>
+    <LegalLayout locale={locale} languagePaths={languagePaths}>
+      <article aria-label={document.title}>
         <div className="section-rule mb-10" aria-hidden="true" />
-        <MarkdownRenderer content={content} />
+        <MarkdownRenderer content={document.markdown} />
       </article>
     </LegalLayout>
   );

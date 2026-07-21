@@ -45,7 +45,7 @@ Vidjeti odjeljak 3. ove Politike.
 
 ## 3. KOLAČIĆI (COOKIES)
 
-Više informacija o kolačićima dostupno je na našoj posebnoj Politici o kolačićima [link].
+Više informacija o kolačićima dostupno je u našoj posebnoj [Politici kolačića](/politika-kolacica).
 
 ## 4. SVRHE, PRAVNA OSNOVA I ROKOVI ČUVANJA
 

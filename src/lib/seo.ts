@@ -1,6 +1,16 @@
 import type { Metadata } from "next";
+import {
+  getLegalDefinition,
+  getLegalLanguagePaths,
+  type LegalDocumentKey,
+} from "@/content/legal";
+import {
+  getDictionary,
+  type Locale,
+  type TranslationDictionary,
+} from "@/content/translations";
 
-export const SITE_URL = "https://hashtag-blue.com";
+export const SITE_URL = "https://www.hashtag-blue.com";
 
 export const SITE_NAME = "Hashtag Blue";
 
@@ -21,11 +31,6 @@ export const SITE_KEYWORDS = [
   "arhitektura Hrvatska",
 ];
 
-export const HOMEPAGE_TITLE = "Hashtag Blue | Arhitektonski ured i nekretnine Zagreb";
-
-export const HOMEPAGE_DESCRIPTION =
-  "Hashtag Blue je arhitektonski ured iz Zagreba specijaliziran za projektiranje, urbanizam, razvoj nekretnina i investicijsko savjetovanje.";
-
 export const rootMetadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   applicationName: SITE_NAME,
@@ -45,36 +50,103 @@ export const rootMetadata: Metadata = {
     },
   },
   openGraph: {
-    locale: "hr_HR",
     type: "website",
     siteName: SITE_NAME,
   },
 };
 
-export const homepageMetadata: Metadata = {
-  title: HOMEPAGE_TITLE,
-  description: HOMEPAGE_DESCRIPTION,
-  openGraph: {
-    title: HOMEPAGE_TITLE,
-    description: HOMEPAGE_DESCRIPTION,
-    url: SITE_URL,
-    locale: "hr_HR",
-    type: "website",
-    siteName: SITE_NAME,
-    images: [
-      {
-        url: OPEN_GRAPH_IMAGE,
-        width: 1200,
-        height: 630,
-        alt: "Hashtag Blue — arhitektonski ured i nekretnine Zagreb",
-        type: "image/jpeg",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: HOMEPAGE_TITLE,
-    description: HOMEPAGE_DESCRIPTION,
-    images: [OPEN_GRAPH_IMAGE],
-  },
+const languageAlternates = {
+  "hr-HR": "/",
+  en: "/en",
+  de: "/de",
+  "x-default": "/",
 };
+
+export function createHomepageMetadata(dictionary: TranslationDictionary): Metadata {
+  const canonical = dictionary.homePath;
+  const alternateLocales = ["hr_HR", "en_US", "de_DE"].filter(
+    (locale) => locale !== dictionary.openGraphLocale,
+  );
+
+  return {
+    title: dictionary.seo.title,
+    description: dictionary.seo.description,
+    alternates: {
+      canonical,
+      languages: languageAlternates,
+    },
+    openGraph: {
+      title: dictionary.seo.title,
+      description: dictionary.seo.description,
+      url: canonical,
+      locale: dictionary.openGraphLocale,
+      alternateLocale: alternateLocales,
+      type: "website",
+      siteName: SITE_NAME,
+      images: [
+        {
+          url: OPEN_GRAPH_IMAGE,
+          width: 1200,
+          height: 630,
+          alt: dictionary.seo.imageAlt,
+          type: "image/jpeg",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: dictionary.seo.title,
+      description: dictionary.seo.description,
+      images: [OPEN_GRAPH_IMAGE],
+    },
+  };
+}
+
+export function createLegalMetadata(locale: Locale, key: LegalDocumentKey): Metadata {
+  const document = getLegalDefinition(locale, key);
+  const dictionary = getDictionary(locale);
+  const languagePaths = getLegalLanguagePaths(key);
+  const title = `${SITE_NAME} | ${document.title}`;
+  const languages = {
+    "hr-HR": languagePaths.hr,
+    en: languagePaths.en,
+    de: languagePaths.de,
+    "x-default": languagePaths.hr,
+  };
+  const alternateLocales = ["hr_HR", "en_US", "de_DE"].filter(
+    (item) => item !== dictionary.openGraphLocale,
+  );
+
+  return {
+    title,
+    description: document.description,
+    alternates: {
+      canonical: languagePaths[locale],
+      languages,
+    },
+    openGraph: {
+      title,
+      description: document.description,
+      url: languagePaths[locale],
+      locale: dictionary.openGraphLocale,
+      alternateLocale: alternateLocales,
+      type: "website",
+      siteName: SITE_NAME,
+      images: [
+        {
+          url: OPEN_GRAPH_IMAGE,
+          width: 1200,
+          height: 630,
+          alt: `${SITE_NAME} — ${document.title}`,
+          type: "image/jpeg",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: document.description,
+      images: [OPEN_GRAPH_IMAGE],
+    },
+  };
+}
