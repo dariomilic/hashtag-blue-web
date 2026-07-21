@@ -5,7 +5,7 @@ import type { Locale } from "@/content/translations";
 import { SITE_URL } from "@/lib/seo";
 
 const languages = {
-  "hr-HR": `${SITE_URL}/`,
+  hr: `${SITE_URL}/`,
   en: `${SITE_URL}/en`,
   de: `${SITE_URL}/de`,
   "x-default": `${SITE_URL}/`,
@@ -16,7 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const legalEntries: MetadataRoute.Sitemap = legalDocumentKeys.flatMap((key) => {
     const paths = getLegalLanguagePaths(key);
     const legalLanguages = {
-      "hr-HR": `${SITE_URL}${paths.hr}`,
+      hr: `${SITE_URL}${paths.hr}`,
       en: `${SITE_URL}${paths.en}`,
       de: `${SITE_URL}${paths.de}`,
       "x-default": `${SITE_URL}${paths.hr}`,

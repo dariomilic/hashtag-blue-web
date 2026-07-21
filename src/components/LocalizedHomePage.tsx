@@ -5,11 +5,13 @@ import CounterStat from "@/components/CounterStat";
 import FadeIn from "@/components/FadeIn";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import JsonLd from "@/components/JsonLd";
 import ProjectLeadSection from "@/components/ProjectLeadSection";
 import SectionNumber from "@/components/SectionNumber";
 import SiteFooter from "@/components/SiteFooter";
 import type { TranslationDictionary } from "@/content/translations";
 import { brandPhotos } from "@/lib/photos";
+import { buildPageStructuredData } from "@/lib/structured-data";
 
 const architectureImages = [
   brandPhotos.architecture.experience,
@@ -88,8 +90,13 @@ type LocalizedHomePageProps = {
 };
 
 export default function LocalizedHomePage({ dictionary }: LocalizedHomePageProps) {
+  const structuredData = buildPageStructuredData({
+    description: dictionary.seo.description,
+  });
+
   return (
     <div id="top" className="min-h-screen bg-background text-charcoal">
+      <JsonLd data={structuredData} />
       <Header locale={dictionary.locale} content={dictionary.header} />
 
       <Hero content={dictionary.hero} />

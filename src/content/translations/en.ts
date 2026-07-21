@@ -4,7 +4,7 @@ export const en = {
   locale: "en",
   htmlLang: "en",
   homePath: "/en",
-  openGraphLocale: "en_US",
+  openGraphLocale: "en_GB",
   seo: {
     title: "Hashtag Blue | Architecture & Real Estate, Zagreb",
     description:

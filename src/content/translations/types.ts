@@ -26,7 +26,7 @@ export type TranslationDictionary = {
   locale: Locale;
   htmlLang: "hr" | "en" | "de";
   homePath: "/" | "/en" | "/de";
-  openGraphLocale: "hr_HR" | "en_US" | "de_DE";
+  openGraphLocale: "hr_HR" | "en_GB" | "de_DE";
   seo: {
     title: string;
     description: string;

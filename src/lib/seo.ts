@@ -31,6 +31,18 @@ export const SITE_KEYWORDS = [
   "arhitektura Hrvatska",
 ];
 
+export const INDEX_FOLLOW_ROBOTS = {
+  index: true,
+  follow: true,
+  googleBot: {
+    index: true,
+    follow: true,
+    "max-image-preview": "large" as const,
+    "max-snippet": -1,
+    "max-video-preview": -1,
+  },
+};
+
 export const rootMetadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   applicationName: SITE_NAME,
@@ -38,49 +50,50 @@ export const rootMetadata: Metadata = {
   creator: SITE_PUBLISHER,
   publisher: SITE_PUBLISHER,
   keywords: SITE_KEYWORDS,
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-      "max-video-preview": -1,
-    },
-  },
+  robots: INDEX_FOLLOW_ROBOTS,
   openGraph: {
     type: "website",
     siteName: SITE_NAME,
   },
 };
 
-const languageAlternates = {
-  "hr-HR": "/",
-  en: "/en",
-  de: "/de",
-  "x-default": "/",
-};
+/** Reciprocal hreflang codes: hr | en | de | x-default */
+export const homepageLanguageAlternates = {
+  hr: `${SITE_URL}/`,
+  en: `${SITE_URL}/en`,
+  de: `${SITE_URL}/de`,
+  "x-default": `${SITE_URL}/`,
+} as const;
+
+const OPEN_GRAPH_LOCALES = ["hr_HR", "en_GB", "de_DE"] as const;
+
+function absoluteUrl(path: string): string {
+  if (path === "/") {
+    return `${SITE_URL}/`;
+  }
+  return `${SITE_URL}${path}`;
+}
 
 export function createHomepageMetadata(dictionary: TranslationDictionary): Metadata {
-  const canonical = dictionary.homePath;
-  const alternateLocales = ["hr_HR", "en_US", "de_DE"].filter(
+  const canonical = absoluteUrl(dictionary.homePath);
+  const alternateLocales = OPEN_GRAPH_LOCALES.filter(
     (locale) => locale !== dictionary.openGraphLocale,
   );
 
   return {
     title: dictionary.seo.title,
     description: dictionary.seo.description,
+    robots: INDEX_FOLLOW_ROBOTS,
     alternates: {
       canonical,
-      languages: languageAlternates,
+      languages: homepageLanguageAlternates,
     },
     openGraph: {
       title: dictionary.seo.title,
       description: dictionary.seo.description,
       url: canonical,
       locale: dictionary.openGraphLocale,
-      alternateLocale: alternateLocales,
+      alternateLocale: [...alternateLocales],
       type: "website",
       siteName: SITE_NAME,
       images: [
@@ -107,29 +120,31 @@ export function createLegalMetadata(locale: Locale, key: LegalDocumentKey): Meta
   const dictionary = getDictionary(locale);
   const languagePaths = getLegalLanguagePaths(key);
   const title = `${SITE_NAME} | ${document.title}`;
+  const canonical = absoluteUrl(languagePaths[locale]);
   const languages = {
-    "hr-HR": languagePaths.hr,
-    en: languagePaths.en,
-    de: languagePaths.de,
-    "x-default": languagePaths.hr,
+    hr: absoluteUrl(languagePaths.hr),
+    en: absoluteUrl(languagePaths.en),
+    de: absoluteUrl(languagePaths.de),
+    "x-default": absoluteUrl(languagePaths.hr),
   };
-  const alternateLocales = ["hr_HR", "en_US", "de_DE"].filter(
+  const alternateLocales = OPEN_GRAPH_LOCALES.filter(
     (item) => item !== dictionary.openGraphLocale,
   );
 
   return {
     title,
     description: document.description,
+    robots: INDEX_FOLLOW_ROBOTS,
     alternates: {
-      canonical: languagePaths[locale],
+      canonical,
       languages,
     },
     openGraph: {
       title,
       description: document.description,
-      url: languagePaths[locale],
+      url: canonical,
       locale: dictionary.openGraphLocale,
-      alternateLocale: alternateLocales,
+      alternateLocale: [...alternateLocales],
       type: "website",
       siteName: SITE_NAME,
       images: [

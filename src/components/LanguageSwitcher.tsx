@@ -48,7 +48,7 @@ export default function LanguageSwitcher({
               )}
               <Link
                 href={languagePaths?.[item] ?? `${localePaths[item]}${hash}`}
-                hrefLang={item === "hr" ? "hr-HR" : item}
+                hrefLang={item}
                 aria-current={active ? "page" : undefined}
                 onClick={onNavigate}
                 className={`language-switcher-link flex min-h-11 min-w-10 items-center justify-center text-[10px] font-medium tracking-[0.14em] uppercase transition-colors duration-200 ${
