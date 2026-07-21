@@ -29,7 +29,7 @@ The Company collects the following categories of personal data solely to the ext
 
 ### 2.1. Data collected through the website
 
-Technical website usage data: IP address, browser type, operating system, date and time of visit, pages viewed and referring URL — collected automatically through the web server and analytics tools to ensure the website's technical operation and security.
+Technical website usage data: IP address, browser type, operating system, date and time of visit, pages viewed and referring URL — collected automatically through the web server, hosting infrastructure and security logs to ensure the website's technical operation and security.
 
 ### 2.2. Data collected through email contact
 
@@ -118,6 +118,6 @@ Email: blue@hashtag-blue.com
 
 Postal address: Hashtag Blue d.o.o., Mirka Viriusa 14, 10 000 Zagreb
 
-Telephone: +385 91 511 5111
+Telephone: +385 95 511 5111
 
 This Privacy Policy has been prepared in accordance with Regulation (EU) 2016/679 (GDPR), the Act on the Implementation of the General Data Protection Regulation (Official Gazette 42/2018), and the Electronic Communications Act (Official Gazette 76/2022, 14/2024), taking into account the guidelines of Agencija za zaštitu osobnih podataka (AZOP) and the European Data Protection Board (EDPB).

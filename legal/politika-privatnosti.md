@@ -17,7 +17,7 @@ Kontaktni podaci voditelja obrade:
 
 - Naziv: Hashtag Blue d.o.o.
 - Adresa: Mirka Viriusa 14
-- E-mail: blue@hashtag-blue-com
+- E-mail: blue@hashtag-blue.com
 - Telefon: +385 95 511 5111
 - Web stranica: www.hashtag-blue.com
 
@@ -29,7 +29,7 @@ Društvo prikuplja sljedeće kategorije osobnih podataka, isključivo u mjeri nu
 
 ### 2.1. Podaci prikupljeni putem web stranice
 
-Tehnički podaci o korištenju stranice: IP adresa, vrsta preglednika, operativni sustav, datum i vrijeme posjeta, pregledane stranice, referentni URL — prikupljaju se automatski putem web poslužitelja i analitičkih alata radi osiguranja tehničkog funkcioniranja i sigurnosti stranice.
+Tehnički podaci o korištenju stranice: IP adresa, vrsta preglednika, operativni sustav, datum i vrijeme posjeta, pregledane stranice, referentni URL — prikupljaju se automatski putem web poslužitelja, hosting infrastrukture i sigurnosnih logova radi osiguranja tehničkog funkcioniranja i sigurnosti stranice.
 
 ### 2.2. Podaci prikupljeni putem e-mail kontakta
 
@@ -118,6 +118,6 @@ E-mail: blue@hashtag-blue.com
 
 Poštanska adresa: Hashtag Blue d.o.o., Mirka Viriusa 14, 10 000 Zagreb
 
-Telefon: +385 91 511 5111
+Telefon: +385 95 511 5111
 
 Ova Politika privatnosti sastavljena je u skladu s Uredbom (EU) 2016/679 (GDPR), Zakonom o provedbi Opće uredbe o zaštiti podataka (NN 42/2018) i Zakonom o elektroničkim komunikacijama (NN 76/2022, 14/2024), te uzimajući u obzir smjernice Agencije za zaštitu osobnih podataka (AZOP) i Europskog odbora za zaštitu podataka (EDPB).

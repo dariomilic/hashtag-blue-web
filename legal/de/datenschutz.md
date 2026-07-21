@@ -29,7 +29,7 @@ Die Gesellschaft erhebt die folgenden Kategorien personenbezogener Daten ausschl
 
 ### 2.1. Über die Website erhobene Daten
 
-Technische Daten zur Nutzung der Website: IP-Adresse, Browsertyp, Betriebssystem, Datum und Uhrzeit des Besuchs, aufgerufene Seiten und Referrer-URL — diese Daten werden automatisch über den Webserver und Analysetools erhoben, um den technischen Betrieb und die Sicherheit der Website zu gewährleisten.
+Technische Daten zur Nutzung der Website: IP-Adresse, Browsertyp, Betriebssystem, Datum und Uhrzeit des Besuchs, aufgerufene Seiten und Referrer-URL — diese Daten werden automatisch über den Webserver, die Hosting-Infrastruktur und Sicherheitsprotokolle erhoben, um den technischen Betrieb und die Sicherheit der Website zu gewährleisten.
 
 ### 2.2. Über E-Mail-Kontakt erhobene Daten
 
@@ -118,6 +118,6 @@ E-Mail: blue@hashtag-blue.com
 
 Postanschrift: Hashtag Blue d.o.o., Mirka Viriusa 14, 10 000 Zagreb
 
-Telefon: +385 91 511 5111
+Telefon: +385 95 511 5111
 
 Diese Datenschutzerklärung wurde gemäß der Verordnung (EU) 2016/679 (DSGVO), dem Gesetz zur Durchführung der Datenschutz-Grundverordnung (NN 42/2018) und dem Gesetz über elektronische Kommunikation (NN 76/2022, 14/2024) sowie unter Berücksichtigung der Leitlinien der Agencija za zaštitu osobnih podataka (AZOP) und des Europäischen Datenschutzausschusses (EDSA) erstellt.
