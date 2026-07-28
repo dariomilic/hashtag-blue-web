@@ -10,7 +10,7 @@ import {
   type TranslationDictionary,
 } from "@/content/translations";
 
-export const SITE_URL = "https://www.hashtag-blue.com";
+export const SITE_URL = "https://hashtag-blue.com";
 
 export const SITE_NAME = "Hashtag Blue";
 
